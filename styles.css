@@ -304,9 +304,11 @@ h1 {
 @media (max-width: 620px) {
   .shell { width: min(calc(100% - 28px), var(--shell)); }
   .nav-links { gap: 12px; font-size: 11px; }
-  .hero { padding-block: 72px 54px; gap: 25px; }
+  .hero { padding-block: 64px 40px; gap: 12px; }
   h1 { font-size: clamp(48px, 15vw, 68px); }
-  .hero-visual { min-height: 310px; }
+  .hero-visual { min-height: 280px; }
+  .stress-object { width: min(82vw, 290px); }
+  .stress-square { transform: none; }
   .tool-section, .projects, .about { padding-block: 78px; }
   .input-panel, .output-panel { padding: 20px; }
   .results-grid { grid-template-columns: 1fr; }
