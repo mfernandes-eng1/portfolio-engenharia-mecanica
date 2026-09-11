@@ -1,113 +1,112 @@
-1|<!doctype html>
-2|<html lang="pt-BR">
-3|<head>
-4|  <meta charset="utf-8">
-5|  <meta name="viewport" content="width=device-width, initial-scale=1">
-6|  <meta name="description" content="Calculadora de tensões em eixo circular submetido à flexão e à torção.">
-7|  <meta name="theme-color" content="#f5f5f7">
-8|  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d1d1f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EMF%3C/text%3E%3C/svg%3E">
-9|  <title>Flexão e torção em eixos — Murilo Fernandes</title>
-10|  <link rel="stylesheet" href="styles.css?v=shaft-v2">
-11|</head>
-12|<body>
-13|  <header class="site-header">
-14|    <nav class="nav shell" aria-label="Navegação principal">
-15|      <a class="brand" href="index.html" aria-label="Voltar ao portfólio">MF</a>
-16|      <div class="nav-links">
-17|        <a href="index.html#projetos">Projetos</a>
-18|        <a href="#calculadora-eixo">Calculadora</a>
-19|        <a href="#metodo-eixo">Método</a>
-20|      </div>
-21|    </nav>
-22|  </header>
-23|
-24|  <main>
-25|    <section class="module-hero shell">
-26|      <div>
-27|        <p class="eyebrow">Ferramenta 02 · Resistência dos materiais</p>
-28|        <h1>Flexão e torção em eixos.</h1>
-29|        <p class="hero-text">Calcule as tensões na superfície de um eixo circular maciço e compare os critérios de von Mises e Tresca.</p>
-30|      </div>
-31|      <svg class="shaft-diagram" viewBox="0 0 540 330" role="img" aria-label="Eixo circular submetido a momento fletor e torque">
-32|        <defs>
-33|          <linearGradient id="shaft-fill" x1="0" y1="0" x2="1" y2="1">
-34|            <stop offset="0" stop-color="#ffffff" />
-35|            <stop offset="1" stop-color="#cfd3d8" />
-36|          </linearGradient>
-37|          <marker id="shaft-arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-38|            <path d="M0,0 L0,8 L8,4 z" fill="#0878d1" />
-39|          </marker>
-40|        </defs>
-41|        <path class="shaft-body" d="M140 120 H405 A65 65 0 0 1 405 250 H140 A65 65 0 0 1 140 120Z" />
-42|        <ellipse class="shaft-face" cx="140" cy="185" rx="65" ry="65" />
-43|        <ellipse class="shaft-edge" cx="405" cy="185" rx="65" ry="65" />
-44|        <path id="torque-arrow" class="shaft-load" d="M55 105 C15 138 15 232 55 265" marker-end="url(#shaft-arrow-blue)" />
-45|        <path id="bending-arrow" class="shaft-load" d="M250 78 C285 30 365 30 400 78" marker-end="url(#shaft-arrow-blue)" />
-46|        <text class="shaft-label" x="30" y="190">T</text>
-47|        <text class="shaft-label" x="318" y="27">M</text>
-48|        <text class="shaft-dimension" x="125" y="190">d</text>
-49|      </svg>
-50|    </section>
-51|
-52|    <section class="tool-section" id="calculadora-eixo">
-53|      <div class="shell">
-54|        <div class="section-heading light">
-55|          <p class="eyebrow">Análise combinada</p>
-56|          <h2>Dados do eixo</h2>
-57|          <p>Use N·mm para os esforços e mm para o diâmetro. Os resultados são apresentados em MPa.</p>
-58|        </div>
-59|
-60|        <div class="calculator">
-61|          <form class="input-panel" id="shaft-form">
-62|            <div class="panel-heading"><h3>Dados de entrada</h3><span class="fixed-unit">N · mm</span></div>
-63|            <label class="field">
-64|              <span><i>M</i> <small>Momento fletor</small></span>
-65|              <input name="momento" id="momento" type="number" step="any" value="1147500" required>
-66|            </label>
-67|            <label class="field">
-68|              <span><i>T</i> <small>Torque</small></span>
-69|              <input name="torque" id="torque" type="number" step="any" value="193800" required>
-70|            </label>
-71|            <label class="field">
-72|              <span><i>d</i> <small>Diâmetro em mm</small></span>
-73|              <input name="diametro" id="diametro" type="number" step="any" min="0" value="20" required>
-74|            </label>
-75|            <p class="sign-note">Modelo válido para eixo maciço, seção circular e tensões avaliadas na superfície.</p>
-76|            <button class="button calculate" type="submit">Calcular tensões</button>
-77|            <p class="form-error" id="shaft-error" role="alert" hidden></p>
-78|          </form>
-79|
-80|          <div class="output-panel" aria-live="polite">
-81|            <div class="results-header"><p class="eyebrow">Resultados</p><span>MPa</span></div>
-82|            <div class="results-grid">
-83|              <article class="result"><span>σ<sub>flexão</sub></span><strong id="shaft-sigma">1.461,042</strong><small>Tensão normal máxima</small></article>
-84|              <article class="result"><span>τ<sub>torção</sub></span><strong id="shaft-tau">123,377</strong><small>Tensão de cisalhamento máxima</small></article>
-85|              <article class="result primary-result"><span>σ<sub>VM</sub></span><strong id="shaft-vm">1.476,587</strong><small>Tensão equivalente de von Mises</small></article>
-86|              <article class="result"><span>σ<sub>Tresca</sub></span><strong id="shaft-tresca">1.481,733</strong><small>Tensão equivalente de Tresca</small></article>
-87|            </div>
-88|            <div class="assumption-card">
-89|              <strong>Leitura do resultado</strong>
-90|              <p>Os critérios equivalentes permitem comparar o estado combinado com o limite do material. Esta ferramenta não aplica concentração de tensão, fadiga ou fator de segurança.</p>
-91|            </div>
-92|          </div>
-93|        </div>
-94|
-95|        <details class="method" id="metodo-eixo">
-96|          <summary>Entenda o cálculo</summary>
-97|          <div class="method-content">
-98|            <p>Para um eixo circular maciço, na superfície:</p>
-99|            <div class="formula"><i>σ</i> = 32<i>M</i> / (π<i>d</i>³)</div>
-100|            <div class="formula"><i>τ</i> = 16<i>T</i> / (π<i>d</i>³)</div>
-101|            <div class="formula"><i>σ</i><sub>VM</sub> = √(<i>σ</i>² + 3<i>τ</i>²)</div>
-102|            <div class="formula"><i>σ</i><sub>Tresca</sub> = √(<i>σ</i>² + 4<i>τ</i>²)</div>
-103|          </div>
-104|        </details>
-105|      </div>
-106|    </section>
-107|  </main>
-108|
-109|  <footer class="footer shell"><span>© <span id="year"></span> Murilo Fernandes</span><a href="index.html">Voltar ao portfólio</a></footer>
-110|  <script type="module" src="src/shaft-app.mjs"></script>
-111|</body>
-112|</html>
-113|
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculadora de tensões em eixo circular submetido à flexão e à torção.">
+  <meta name="theme-color" content="#f5f5f7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d1d1f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EMF%3C/text%3E%3C/svg%3E">
+  <title>Flexão e torção em eixos — Murilo Fernandes</title>
+  <link rel="stylesheet" href="styles.css?v=shaft-v2">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="Voltar ao portfólio">MF</a>
+      <div class="nav-links">
+        <a href="index.html#projetos">Projetos</a>
+        <a href="#calculadora-eixo">Calculadora</a>
+        <a href="#metodo-eixo">Método</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="module-hero shell">
+      <div>
+        <p class="eyebrow">Ferramenta 02 · Resistência dos materiais</p>
+        <h1>Flexão e torção em eixos.</h1>
+        <p class="hero-text">Calcule as tensões na superfície de um eixo circular maciço e compare os critérios de von Mises e Tresca.</p>
+      </div>
+      <svg class="shaft-diagram" viewBox="0 0 540 330" role="img" aria-label="Eixo circular submetido a momento fletor e torque">
+        <defs>
+          <linearGradient id="shaft-fill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="1" stop-color="#cfd3d8" />
+          </linearGradient>
+          <marker id="shaft-arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L0,8 L8,4 z" fill="#0878d1" />
+          </marker>
+        </defs>
+        <path class="shaft-body" d="M140 120 H405 A65 65 0 0 1 405 250 H140 A65 65 0 0 1 140 120Z" />
+        <ellipse class="shaft-face" cx="140" cy="185" rx="65" ry="65" />
+        <ellipse class="shaft-edge" cx="405" cy="185" rx="65" ry="65" />
+        <path id="torque-arrow" class="shaft-load" d="M55 105 C15 138 15 232 55 265" marker-end="url(#shaft-arrow-blue)" />
+        <path id="bending-arrow" class="shaft-load" d="M250 78 C285 30 365 30 400 78" marker-end="url(#shaft-arrow-blue)" />
+        <text class="shaft-label" x="30" y="190">T</text>
+        <text class="shaft-label" x="318" y="27">M</text>
+        <text class="shaft-dimension" x="125" y="190">d</text>
+      </svg>
+    </section>
+
+    <section class="tool-section" id="calculadora-eixo">
+      <div class="shell">
+        <div class="section-heading light">
+          <p class="eyebrow">Análise combinada</p>
+          <h2>Dados do eixo</h2>
+          <p>Use N·mm para os esforços e mm para o diâmetro. Os resultados são apresentados em MPa.</p>
+        </div>
+
+        <div class="calculator">
+          <form class="input-panel" id="shaft-form">
+            <div class="panel-heading"><h3>Dados de entrada</h3><span class="fixed-unit">N · mm</span></div>
+            <label class="field">
+              <span><i>M</i> <small>Momento fletor</small></span>
+              <input name="momento" id="momento" type="number" step="any" value="1147500" required>
+            </label>
+            <label class="field">
+              <span><i>T</i> <small>Torque</small></span>
+              <input name="torque" id="torque" type="number" step="any" value="193800" required>
+            </label>
+            <label class="field">
+              <span><i>d</i> <small>Diâmetro em mm</small></span>
+              <input name="diametro" id="diametro" type="number" step="any" min="0" value="20" required>
+            </label>
+            <p class="sign-note">Modelo válido para eixo maciço, seção circular e tensões avaliadas na superfície.</p>
+            <button class="button calculate" type="submit">Calcular tensões</button>
+            <p class="form-error" id="shaft-error" role="alert" hidden></p>
+          </form>
+
+          <div class="output-panel" aria-live="polite">
+            <div class="results-header"><p class="eyebrow">Resultados</p><span>MPa</span></div>
+            <div class="results-grid">
+              <article class="result"><span>σ<sub>flexão</sub></span><strong id="shaft-sigma">1.461,042</strong><small>Tensão normal máxima</small></article>
+              <article class="result"><span>τ<sub>torção</sub></span><strong id="shaft-tau">123,377</strong><small>Tensão de cisalhamento máxima</small></article>
+              <article class="result primary-result"><span>σ<sub>VM</sub></span><strong id="shaft-vm">1.476,587</strong><small>Tensão equivalente de von Mises</small></article>
+              <article class="result"><span>σ<sub>Tresca</sub></span><strong id="shaft-tresca">1.481,733</strong><small>Tensão equivalente de Tresca</small></article>
+            </div>
+            <div class="assumption-card">
+              <strong>Leitura do resultado</strong>
+              <p>Os critérios equivalentes permitem comparar o estado combinado com o limite do material. Esta ferramenta não aplica concentração de tensão, fadiga ou fator de segurança.</p>
+            </div>
+          </div>
+        </div>
+
+        <details class="method" id="metodo-eixo">
+          <summary>Entenda o cálculo</summary>
+          <div class="method-content">
+            <p>Para um eixo circular maciço, na superfície:</p>
+            <div class="formula"><i>σ</i> = 32<i>M</i> / (π<i>d</i>³)</div>
+            <div class="formula"><i>τ</i> = 16<i>T</i> / (π<i>d</i>³)</div>
+            <div class="formula"><i>σ</i><sub>VM</sub> = √(<i>σ</i>² + 3<i>τ</i>²)</div>
+            <div class="formula"><i>σ</i><sub>Tresca</sub> = √(<i>σ</i>² + 4<i>τ</i>²)</div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell"><span>© <span id="year"></span> Murilo Fernandes</span><a href="index.html">Voltar ao portfólio</a></footer>
+  <script type="module" src="src/shaft-app.mjs"></script>
+</body>
+</html>

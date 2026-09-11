@@ -1,208 +1,207 @@
-1|<!doctype html>
-2|<html lang="pt-BR">
-3|<head>
-4|  <meta charset="utf-8">
-5|  <meta name="viewport" content="width=device-width, initial-scale=1">
-6|  <meta name="description" content="Ferramentas e projetos de Engenharia Mecânica desenvolvidos por Murilo Fernandes.">
-7|  <meta name="theme-color" content="#f5f5f7">
-8|  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d1d1f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EMF%3C/text%3E%3C/svg%3E">
-9|  <title>Murilo Fernandes — Engenharia Mecânica</title>
-10|  <link rel="stylesheet" href="styles.css?v=diagram-v2">
-11|</head>
-12|<body>
-13|  <header class="site-header">
-14|    <nav class="nav shell" aria-label="Navegação principal">
-15|      <a class="brand" href="#inicio" aria-label="Ir ao início">MF</a>
-16|      <div class="nav-links">
-17|        <a href="#ferramenta">Ferramenta</a>
-18|        <a href="#projetos">Projetos</a>
-19|        <a href="#sobre">Sobre</a>
-20|      </div>
-21|    </nav>
-22|  </header>
-23|
-24|  <main>
-25|    <section class="hero shell" id="inicio">
-26|      <div class="hero-copy">
-27|        <p class="eyebrow">Portfólio técnico · Engenharia Mecânica</p>
-28|        <h1>Engenharia que sai do papel.</h1>
-29|        <p class="hero-text">Projetos e ferramentas que transformam cálculos de engenharia em soluções claras, confiáveis e fáceis de usar.</p>
-30|        <div class="hero-actions">
-31|          <a class="button primary" href="#ferramenta">Explorar ferramenta</a>
-32|          <a class="text-link" href="#sobre">Conhecer meu trabalho <span aria-hidden="true">↗</span></a>
-33|        </div>
-34|      </div>
-35|
-36|      <div class="hero-visual" aria-hidden="true">
-37|        <div class="stress-object">
-38|          <svg class="stress-diagram" viewBox="0 0 400 400" role="presentation">
-39|            <defs>
-40|              <linearGradient id="stress-fill" x1="0" y1="0" x2="1" y2="1">
-41|                <stop offset="0" stop-color="#ffffff" />
-42|                <stop offset="1" stop-color="#e9eaed" />
-43|              </linearGradient>
-44|              <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
-45|                <path d="M0,0 L0,12 L11,6 z" fill="#0878d1" />
-46|              </marker>
-47|              <marker id="arrow-dark" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
-48|                <path d="M0,0 L0,12 L11,6 z" fill="#1d1d1f" />
-49|              </marker>
-50|            </defs>
-51|
-52|            <rect class="stress-element" x="110" y="110" width="180" height="180" />
-53|
-54|            <g class="stress-normal">
-55|              <path d="M110 200 H42" marker-end="url(#arrow-blue)" />
-56|              <path d="M290 200 H358" marker-end="url(#arrow-blue)" />
-57|              <path d="M200 110 V42" marker-end="url(#arrow-blue)" />
-58|              <path d="M200 290 V358" marker-end="url(#arrow-blue)" />
-59|            </g>
-60|
-61|            <g class="stress-shear">
-62|              <path d="M125 92 H215" marker-end="url(#arrow-dark)" />
-63|              <path d="M308 125 V215" marker-end="url(#arrow-dark)" />
-64|              <path d="M275 308 H185" marker-end="url(#arrow-dark)" />
-65|              <path d="M92 275 V185" marker-end="url(#arrow-dark)" />
-66|            </g>
-67|
-68|            <text class="stress-label normal-label" x="342" y="181" text-anchor="middle">σx</text>
-69|            <text class="stress-label normal-label" x="218" y="50">σy</text>
-70|            <text class="stress-label shear-label" x="320" y="115">τxy</text>
-71|          </svg>
-72|        </div>
-73|      </div>
-74|    </section>
-75|
-76|    <section class="tool-section" id="ferramenta">
-77|      <div class="shell">
-78|        <div class="section-heading light">
-79|          <p class="eyebrow">Ferramenta 01</p>
-80|          <h2>Estado plano de tensão</h2>
-81|          <p>Informe as tensões no ponto. O cálculo retorna as tensões principais, o cisalhamento máximo e o círculo de Mohr.</p>
-82|        </div>
-83|
-84|        <div class="calculator">
-85|          <form class="input-panel" id="stress-form">
-86|            <div class="panel-heading">
-87|              <h3>Dados de entrada</h3>
-88|              <label class="unit-field">
-89|                <span>Unidade</span>
-90|                <select id="unit" name="unit">
-91|                  <option value="MPa">MPa</option>
-92|                  <option value="kPa">kPa</option>
-93|                  <option value="Pa">Pa</option>
-94|                  <option value="ksi">ksi</option>
-95|                </select>
-96|              </label>
-97|            </div>
-98|
-99|            <label class="field">
-100|              <span><i>σ</i><sub>x</sub> <small>Tensão normal em x</small></span>
-101|              <input id="sigma-x" name="sigmaX" type="number" step="any" value="18" required>
-102|            </label>
-103|
-104|            <label class="field">
-105|              <span><i>σ</i><sub>y</sub> <small>Tensão normal em y</small></span>
-106|              <input id="sigma-y" name="sigmaY" type="number" step="any" value="12" required>
-107|            </label>
-108|
-109|            <label class="field">
-110|              <span><i>τ</i><sub>xy</sub> <small>Cisalhamento no plano xy</small></span>
-111|              <input id="tau-xy" name="tauXY" type="number" step="any" value="-7" required>
-112|            </label>
-113|
-114|            <p class="sign-note">Use valores positivos ou negativos conforme a convenção adotada no elemento de tensão.</p>
-115|            <button class="button calculate" type="submit">Calcular estado de tensão</button>
-116|            <p class="form-error" id="form-error" role="alert" hidden></p>
-117|          </form>
-118|
-119|          <div class="output-panel" aria-live="polite">
-120|            <div class="results-header">
-121|              <p class="eyebrow">Resultados</p>
-122|              <span id="result-unit">MPa</span>
-123|            </div>
-124|
-125|            <div class="results-grid">
-126|              <article class="result primary-result">
-127|                <span>σ<sub>1</sub></span>
-128|                <strong id="sigma-1">22,616</strong>
-129|                <small>Tensão principal máxima</small>
-130|              </article>
-131|              <article class="result">
-132|                <span>σ<sub>2</sub></span>
-133|                <strong id="sigma-2">7,384</strong>
-134|                <small>Tensão principal mínima</small>
-135|              </article>
-136|              <article class="result">
-137|                <span>τ<sub>máx</sub></span>
-138|                <strong id="tau-max">7,616</strong>
-139|                <small>Cisalhamento máximo</small>
-140|              </article>
-141|              <article class="result">
-142|                <span>θ<sub>p</sub></span>
-143|                <strong id="theta-p">−33,401°</strong>
-144|                <small>Orientação principal</small>
-145|              </article>
-146|            </div>
-147|
-148|            <div class="mohr-card">
-149|              <div class="mohr-heading">
-150|                <h3>Círculo de Mohr</h3>
-151|                <p>σ no eixo horizontal · τ no eixo vertical</p>
-152|              </div>
-153|              <canvas id="mohr-canvas" width="820" height="500" aria-label="Representação gráfica do círculo de Mohr"></canvas>
-154|            </div>
-155|          </div>
-156|        </div>
-157|
-158|        <details class="method">
-159|          <summary>Entenda o cálculo</summary>
-160|          <div class="method-content">
-161|            <p>Para o estado plano, o centro e o raio do círculo de Mohr são:</p>
-162|            <div class="formula"><i>σ</i><sub>m</sub> = (<i>σ</i><sub>x</sub> + <i>σ</i><sub>y</sub>) / 2</div>
-163|            <div class="formula"><i>R</i> = √[((<i>σ</i><sub>x</sub> − <i>σ</i><sub>y</sub>) / 2)² + <i>τ</i><sub>xy</sub>²]</div>
-164|            <p>As tensões principais são <i>σ</i><sub>1,2</sub> = <i>σ</i><sub>m</sub> ± <i>R</i>, e a tensão máxima de cisalhamento é igual ao raio <i>R</i>.</p>
-165|          </div>
-166|        </details>
-167|      </div>
-168|    </section>
-169|
-170|    <section class="projects shell" id="projetos">
-171|      <div class="section-heading">
-172|        <p class="eyebrow">Projetos</p>
-173|        <h2>Construído para ser usado.</h2>
-174|      </div>
-175|      <a class="project-row" href="#ferramenta">
-176|        <span class="project-index">01</span>
-177|        <span class="project-name">Estado plano de tensão</span>
-178|        <span class="project-status">Disponível</span>
-179|        <span class="project-arrow" aria-hidden="true">↗</span>
-180|      </a>
-181|      <a class="project-row" href="eixos.html">
-182|        <span class="project-index">02</span>
-183|        <span class="project-name">Flexão e torção em eixos</span>
-184|        <span class="project-status">Em desenvolvimento</span>
-185|        <span class="project-arrow" aria-hidden="true">↗</span>
-186|      </a>
-187|    </section>
-188|
-189|    <section class="about" id="sobre">
-190|      <div class="shell about-grid">
-191|        <p class="eyebrow">Sobre</p>
-192|        <div>
-193|          <h2>Murilo Fernandes</h2>
-194|          <p>Estudante de Engenharia Mecânica na Unifacens. Desenvolvo ferramentas e projetos que tornam cálculos de engenharia mais claros, práticos e acessíveis.</p>
-195|        </div>
-196|      </div>
-197|    </section>
-198|  </main>
-199|
-200|  <footer class="footer shell">
-201|    <span>© <span id="year"></span> Murilo Fernandes</span>
-202|    <span>Engenharia Mecânica · Unifacens</span>
-203|  </footer>
-204|
-205|  <script type="module" src="src/app.mjs"></script>
-206|</body>
-207|</html>
-208|
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ferramentas e projetos de Engenharia Mecânica desenvolvidos por Murilo Fernandes.">
+  <meta name="theme-color" content="#f5f5f7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d1d1f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EMF%3C/text%3E%3C/svg%3E">
+  <title>Murilo Fernandes — Engenharia Mecânica</title>
+  <link rel="stylesheet" href="styles.css?v=diagram-v2">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Ir ao início">MF</a>
+      <div class="nav-links">
+        <a href="#ferramenta">Ferramenta</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Portfólio técnico · Engenharia Mecânica</p>
+        <h1>Engenharia que sai do papel.</h1>
+        <p class="hero-text">Projetos e ferramentas que transformam cálculos de engenharia em soluções claras, confiáveis e fáceis de usar.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#ferramenta">Explorar ferramenta</a>
+          <a class="text-link" href="#sobre">Conhecer meu trabalho <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="stress-object">
+          <svg class="stress-diagram" viewBox="0 0 400 400" role="presentation">
+            <defs>
+              <linearGradient id="stress-fill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#e9eaed" />
+              </linearGradient>
+              <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L0,12 L11,6 z" fill="#0878d1" />
+              </marker>
+              <marker id="arrow-dark" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L0,12 L11,6 z" fill="#1d1d1f" />
+              </marker>
+            </defs>
+
+            <rect class="stress-element" x="110" y="110" width="180" height="180" />
+
+            <g class="stress-normal">
+              <path d="M110 200 H42" marker-end="url(#arrow-blue)" />
+              <path d="M290 200 H358" marker-end="url(#arrow-blue)" />
+              <path d="M200 110 V42" marker-end="url(#arrow-blue)" />
+              <path d="M200 290 V358" marker-end="url(#arrow-blue)" />
+            </g>
+
+            <g class="stress-shear">
+              <path d="M125 92 H215" marker-end="url(#arrow-dark)" />
+              <path d="M308 125 V215" marker-end="url(#arrow-dark)" />
+              <path d="M275 308 H185" marker-end="url(#arrow-dark)" />
+              <path d="M92 275 V185" marker-end="url(#arrow-dark)" />
+            </g>
+
+            <text class="stress-label normal-label" x="342" y="181" text-anchor="middle">σx</text>
+            <text class="stress-label normal-label" x="218" y="50">σy</text>
+            <text class="stress-label shear-label" x="320" y="115">τxy</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-section" id="ferramenta">
+      <div class="shell">
+        <div class="section-heading light">
+          <p class="eyebrow">Ferramenta 01</p>
+          <h2>Estado plano de tensão</h2>
+          <p>Informe as tensões no ponto. O cálculo retorna as tensões principais, o cisalhamento máximo e o círculo de Mohr.</p>
+        </div>
+
+        <div class="calculator">
+          <form class="input-panel" id="stress-form">
+            <div class="panel-heading">
+              <h3>Dados de entrada</h3>
+              <label class="unit-field">
+                <span>Unidade</span>
+                <select id="unit" name="unit">
+                  <option value="MPa">MPa</option>
+                  <option value="kPa">kPa</option>
+                  <option value="Pa">Pa</option>
+                  <option value="ksi">ksi</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span><i>σ</i><sub>x</sub> <small>Tensão normal em x</small></span>
+              <input id="sigma-x" name="sigmaX" type="number" step="any" value="18" required>
+            </label>
+
+            <label class="field">
+              <span><i>σ</i><sub>y</sub> <small>Tensão normal em y</small></span>
+              <input id="sigma-y" name="sigmaY" type="number" step="any" value="12" required>
+            </label>
+
+            <label class="field">
+              <span><i>τ</i><sub>xy</sub> <small>Cisalhamento no plano xy</small></span>
+              <input id="tau-xy" name="tauXY" type="number" step="any" value="-7" required>
+            </label>
+
+            <p class="sign-note">Use valores positivos ou negativos conforme a convenção adotada no elemento de tensão.</p>
+            <button class="button calculate" type="submit">Calcular estado de tensão</button>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+          </form>
+
+          <div class="output-panel" aria-live="polite">
+            <div class="results-header">
+              <p class="eyebrow">Resultados</p>
+              <span id="result-unit">MPa</span>
+            </div>
+
+            <div class="results-grid">
+              <article class="result primary-result">
+                <span>σ<sub>1</sub></span>
+                <strong id="sigma-1">22,616</strong>
+                <small>Tensão principal máxima</small>
+              </article>
+              <article class="result">
+                <span>σ<sub>2</sub></span>
+                <strong id="sigma-2">7,384</strong>
+                <small>Tensão principal mínima</small>
+              </article>
+              <article class="result">
+                <span>τ<sub>máx</sub></span>
+                <strong id="tau-max">7,616</strong>
+                <small>Cisalhamento máximo</small>
+              </article>
+              <article class="result">
+                <span>θ<sub>p</sub></span>
+                <strong id="theta-p">−33,401°</strong>
+                <small>Orientação principal</small>
+              </article>
+            </div>
+
+            <div class="mohr-card">
+              <div class="mohr-heading">
+                <h3>Círculo de Mohr</h3>
+                <p>σ no eixo horizontal · τ no eixo vertical</p>
+              </div>
+              <canvas id="mohr-canvas" width="820" height="500" aria-label="Representação gráfica do círculo de Mohr"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <details class="method">
+          <summary>Entenda o cálculo</summary>
+          <div class="method-content">
+            <p>Para o estado plano, o centro e o raio do círculo de Mohr são:</p>
+            <div class="formula"><i>σ</i><sub>m</sub> = (<i>σ</i><sub>x</sub> + <i>σ</i><sub>y</sub>) / 2</div>
+            <div class="formula"><i>R</i> = √[((<i>σ</i><sub>x</sub> − <i>σ</i><sub>y</sub>) / 2)² + <i>τ</i><sub>xy</sub>²]</div>
+            <p>As tensões principais são <i>σ</i><sub>1,2</sub> = <i>σ</i><sub>m</sub> ± <i>R</i>, e a tensão máxima de cisalhamento é igual ao raio <i>R</i>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="projects shell" id="projetos">
+      <div class="section-heading">
+        <p class="eyebrow">Projetos</p>
+        <h2>Construído para ser usado.</h2>
+      </div>
+      <a class="project-row" href="#ferramenta">
+        <span class="project-index">01</span>
+        <span class="project-name">Estado plano de tensão</span>
+        <span class="project-status">Disponível</span>
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="project-row" href="eixos.html">
+        <span class="project-index">02</span>
+        <span class="project-name">Flexão e torção em eixos</span>
+        <span class="project-status">Em desenvolvimento</span>
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="shell about-grid">
+        <p class="eyebrow">Sobre</p>
+        <div>
+          <h2>Murilo Fernandes</h2>
+          <p>Estudante de Engenharia Mecânica na Unifacens. Desenvolvo ferramentas e projetos que tornam cálculos de engenharia mais claros, práticos e acessíveis.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span>© <span id="year"></span> Murilo Fernandes</span>
+    <span>Engenharia Mecânica · Unifacens</span>
+  </footer>
+
+  <script type="module" src="src/app.mjs"></script>
+</body>
+</html>
