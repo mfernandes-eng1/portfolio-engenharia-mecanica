@@ -2,6 +2,8 @@
 
 Portfólio técnico com ferramentas próprias de Engenharia Mecânica.
 
+**Site:** https://mfernandes-eng1.github.io/portfolio-engenharia-mecanica/
+
 ## Primeira ferramenta
 
 A calculadora de estado plano de tensão recebe `σx`, `σy` e `τxy` e retorna:
