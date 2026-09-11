@@ -134,23 +134,29 @@ h1 {
 .text-link span { margin-left: 3px; }
 
 .hero-visual { min-height: 520px; display: grid; place-items: center; }
-.stress-object { position: relative; width: min(100%, 500px); aspect-ratio: 1; }
-.stress-square {
-  position: absolute;
-  inset: 24%;
-  background: linear-gradient(145deg, #fff, #e9eaed);
-  border: 1px solid #c7c9ce;
-  box-shadow: 18px 24px 55px rgba(29, 29, 31, .12);
-  transform: rotate(2deg);
+.stress-object { width: min(100%, 500px); }
+.stress-diagram { width: 100%; height: auto; display: block; overflow: visible; }
+.stress-element {
+  fill: url(#stress-fill);
+  stroke: #c7c9ce;
+  stroke-width: 1;
+  filter: drop-shadow(12px 16px 18px rgba(29, 29, 31, .12));
 }
-.stress-object svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.stress-object path { fill: none; stroke-width: 3; stroke-linecap: round; }
-.stress-object path:nth-of-type(-n+4) { stroke: var(--blue); }
-.stress-object path:nth-of-type(n+5) { stroke: var(--ink); }
-.axis { position: absolute; z-index: 2; font-size: 14px; font-weight: 650; }
-.axis-x { right: 2%; top: 46%; color: var(--blue); }
-.axis-y { top: 1%; left: 48%; color: var(--blue); }
-.axis-t { right: 19%; top: 19%; }
+.stress-normal, .stress-shear {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.stress-normal { stroke: var(--blue); }
+.stress-shear { stroke: var(--ink); }
+.stress-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 650;
+}
+.normal-label { fill: var(--blue); }
+.shear-label { fill: var(--ink); }
 
 .tool-section {
   padding-block: 112px;
@@ -308,7 +314,6 @@ h1 {
   h1 { font-size: clamp(48px, 15vw, 68px); }
   .hero-visual { min-height: 280px; }
   .stress-object { width: min(82vw, 290px); }
-  .stress-square { transform: none; }
   .tool-section, .projects, .about { padding-block: 78px; }
   .input-panel, .output-panel { padding: 20px; }
   .results-grid { grid-template-columns: 1fr; }

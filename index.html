@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231d1d1f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EMF%3C/text%3E%3C/svg%3E">
   <title>Murilo Fernandes — Engenharia Mecânica</title>
-  <link rel="stylesheet" href="styles.css?v=f28a227">
+  <link rel="stylesheet" href="styles.css?v=diagram-v2">
 </head>
 <body>
   <header class="site-header">
@@ -35,27 +35,39 @@
 
       <div class="hero-visual" aria-hidden="true">
         <div class="stress-object">
-          <span class="axis axis-x">σx</span>
-          <span class="axis axis-y">σy</span>
-          <span class="axis axis-t">τxy</span>
-          <div class="stress-square"></div>
-          <svg viewBox="0 0 520 520" role="presentation">
+          <svg class="stress-diagram" viewBox="0 0 400 400" role="presentation">
             <defs>
-              <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L7,3 z" fill="#0878d1" />
+              <linearGradient id="stress-fill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#e9eaed" />
+              </linearGradient>
+              <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L0,12 L11,6 z" fill="#0878d1" />
               </marker>
-              <marker id="arrow-dark" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L7,3 z" fill="#1d1d1f" />
+              <marker id="arrow-dark" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L0,12 L11,6 z" fill="#1d1d1f" />
               </marker>
             </defs>
-            <path d="M120 260 H42" marker-end="url(#arrow-blue)" />
-            <path d="M400 260 H478" marker-end="url(#arrow-blue)" />
-            <path d="M260 120 V42" marker-end="url(#arrow-blue)" />
-            <path d="M260 400 V478" marker-end="url(#arrow-blue)" />
-            <path d="M155 122 H225" marker-end="url(#arrow-dark)" />
-            <path d="M398 155 V225" marker-end="url(#arrow-dark)" />
-            <path d="M365 398 H295" marker-end="url(#arrow-dark)" />
-            <path d="M122 365 V295" marker-end="url(#arrow-dark)" />
+
+            <rect class="stress-element" x="110" y="110" width="180" height="180" />
+
+            <g class="stress-normal">
+              <path d="M110 200 H42" marker-end="url(#arrow-blue)" />
+              <path d="M290 200 H358" marker-end="url(#arrow-blue)" />
+              <path d="M200 110 V42" marker-end="url(#arrow-blue)" />
+              <path d="M200 290 V358" marker-end="url(#arrow-blue)" />
+            </g>
+
+            <g class="stress-shear">
+              <path d="M125 92 H215" marker-end="url(#arrow-dark)" />
+              <path d="M308 125 V215" marker-end="url(#arrow-dark)" />
+              <path d="M275 308 H185" marker-end="url(#arrow-dark)" />
+              <path d="M92 275 V185" marker-end="url(#arrow-dark)" />
+            </g>
+
+            <text class="stress-label normal-label" x="342" y="181" text-anchor="middle">σx</text>
+            <text class="stress-label normal-label" x="218" y="50">σy</text>
+            <text class="stress-label shear-label" x="320" y="115">τxy</text>
           </svg>
         </div>
       </div>
